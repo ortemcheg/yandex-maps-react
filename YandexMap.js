@@ -41,14 +41,12 @@ class YandexMap extends Component {
     });
   }
   initAPI(){
-    //Figure out the 'this' thing
-    const self = this;
     //TODO: Write exception handlers
-    const waitForYandexMapsAPI = new Promise( function(resolve, reject) {
-      self.ymaps.ready( () => { resolve() });
+    const waitForYandexMapsAPI = new Promise( (resolve, reject) => {
+      this.ymaps.ready( () => { resolve() });
     } );
     waitForYandexMapsAPI.then( () => {
-      self.setState( () => ({ mapAPIIsReady: true }) );
+      this.setState( () => ({ mapAPIIsReady: true }) );
     } );
   }
   render(){
