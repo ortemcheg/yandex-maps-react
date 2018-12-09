@@ -49,6 +49,10 @@ class YandexMap extends Component {
       this.setState( () => ({ mapAPIIsReady: true }) );
     } );
   }
+  //test this
+  componentWillUnmount(){
+    this.map.destroy();
+  }
   render(){
     return <div className="yaMap" ref={this.mapRef} />
   }
