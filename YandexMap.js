@@ -5,29 +5,19 @@ class YandexMap extends Component {
   constructor(props){
     super(props);
     this.state = {
-      mapAPIIsReady: false,
       mapLoaded: false,
       zoom: props.zoom,
-      location: {
-        lat: props.location.lat,
-        lng: props.location.lng,
-      }
+      location: [props.location[0], props.location[1]]
     };
     this.mapRef = React.createRef();
     this.initAPI = this.initAPI.bind(this);
   }
   static defaultProps = {
     zoom: 16,
-    location: {
-      lat: 55.773206,
-      lng: 38.446328,
-    }
+    location: [55.773206, 38.446328]
   }
   static propTypes = {
-    location: PropTypes.shape({
-      lat: PropTypes.number.isRequired,
-      lng: PropTypes.number.isRequired
-    }),
+    location: PropTypes.arrayOf(PropTypes.number.isRequired),
     zoom: PropTypes.number.isRequired
   }
   componentDidMount() {
@@ -35,10 +25,7 @@ class YandexMap extends Component {
     if(!this.state.mapAPIIsReady) this.initAPI();
   }
   componentDidUpdate(){
-    this.map = new this.ymaps.Map(this.mapRef.current, {
-      center: [this.state.location.lat, this.state.location.lng],
-      zoom: this.state.zoom
-    });
+
   }
   initAPI(){
     //TODO: Write exception handlers
@@ -46,7 +33,11 @@ class YandexMap extends Component {
       this.ymaps.ready( () => { resolve() });
     } );
     waitForYandexMapsAPI.then( () => {
-      this.setState( () => ({ mapAPIIsReady: true }) );
+      this.map = new this.ymaps.Map(this.mapRef.current, {
+        center: [this.state.location[0], this.state.location[1]],
+        zoom: this.state.zoom
+      });
+      this.setState( () => ({ mapLoaded: true }) );
     } );
   }
   //test this
