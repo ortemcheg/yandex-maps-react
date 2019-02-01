@@ -1,6 +1,8 @@
 ## Synopsis
 A set of React components for embedding Yandex Maps in React Apps.
 
+**IMPORTANT** The components albeit functional are in the early stages of development. The fully fledged library will be rearranged and uploaded to the mpm registry when it's ready.
+
 ## Motivation
 Yandex Maps (YM) is the most popular map service in Russia. The YM team provides \[imperative\] JavaScript API to enable developers to embed Yandex Maps in their JS apps and to add geo objects to those maps. yandex-maps-react is an easy to use React abstaction for that API. 
 
@@ -22,6 +24,8 @@ Yandex Maps (YM) is the most popular map service in Russia. The YM team provides
 ```
 
 ## Code samples
+The most important component in this library is YandexMap. It renders a div with your map to the DOM. You can use that component by itself but most likely you'll want to add Placemarks, Baloons and other geo objects to it. You can add those as children to YandexMap.
+
 The code below renders a Yandex Map and two Placemarks on it.
 
 ```Javascript
