@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 
 class YandexMap extends Component {
-  constructor(props){
+  constructor(props) {
     super(props);
     this.state = {
       mapLoaded: false,
@@ -23,9 +23,10 @@ class YandexMap extends Component {
   componentDidMount() {
     this.ymaps = window.ymaps;
     if(!this.state.mapAPIIsReady) this.initAPI();
-  }
-  componentDidUpdate(){
-
+    console.log(`I have`, React.Children.count(this.props.children), `children`);
+    React.Children.forEach(this.props.children, (kid) => {
+      console.log(kid.props.coordinates, 'descriptor:', kid.type.name);
+    });
   }
   initAPI(){
     //TODO: Write exception handlers
